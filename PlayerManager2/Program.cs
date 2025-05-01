@@ -103,17 +103,13 @@ namespace PlayerManager2
 
         public IEnumerable<Player> GetPlayersWithScoreGreaterThan(int value)
         {
-            List<Player> result = new List<Player>();
-
             foreach (Player player in players)
             {
                 if (player.Score > value)
                 {
-                    result.Add(player);
+                    yield return player;
                 }
             }
-
-            return result;
         }
     }
 }
