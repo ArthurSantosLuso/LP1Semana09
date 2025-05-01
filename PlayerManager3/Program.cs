@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 
 namespace PlayerManager3
@@ -12,8 +13,8 @@ namespace PlayerManager3
 
         private Program()
         {
-            players.Add(new Player("Arthur", 999));
             players.Add(new Player("Kanye", 666));
+            players.Add(new Player("Arthur", 999));
         }
 
 
@@ -79,6 +80,7 @@ namespace PlayerManager3
 
         public void ListPlayers()
         {
+            players.Sort();
             foreach (Player p in players)
             {
                 Console.WriteLine(p);
@@ -103,6 +105,7 @@ namespace PlayerManager3
 
         public IEnumerable<Player> GetPlayersWithScoreGreaterThan(int value)
         {
+            players.Sort();
             foreach (Player player in players)
             {
                 if (player.Score > value)

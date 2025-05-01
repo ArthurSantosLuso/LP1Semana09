@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlayerManager3
 {
-    public class Player
+    public class Player : IComparable<Player>
     {
         public string Name { get; }
         public int Score { get; set; }
@@ -20,6 +20,11 @@ namespace PlayerManager3
         public override string ToString()
         {
             return $"{Name} - Score: {Score}";
+        }
+
+        public int CompareTo(Player other){
+            if (other ==  null) return 1;
+            return other.Score - this.Score;
         }
     }
 }
