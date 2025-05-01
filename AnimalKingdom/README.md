@@ -14,9 +14,22 @@ classDiagram
     class Bee
     
     class IMammal{
-        «interface»
+        <<interface>>
     } 
 
-    class ICanFly
+    class ICanFly{
+        <<interface>>
+    } 
+
+    Animal <|-- Bat
+    Animal <|-- Bee
+    Animal <|-- Dog
+    Animal <|-- Cat
+    Dog ..|> IMammal
+    Cat ..|> IMammal
+    Bat ..|> IMammal
+    Bee ..|> ICanFly
+    Bat ..|> ICanFly
+
 
     
