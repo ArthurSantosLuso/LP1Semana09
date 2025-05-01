@@ -44,6 +44,12 @@ namespace PlayerManager4
                     case "3":
                         ListPlayersWithHighScore();
                         break;
+                    case "4":
+                        ListPlayersByName(true);
+                        break;
+                    case "5":
+                        ListPlayersByName(false);
+                        break;
                     case "0":
                         stillRun = false;
                         break;
@@ -51,6 +57,7 @@ namespace PlayerManager4
                         Console.WriteLine("The option choosed does not exist.");
                         break;
                 }
+
 
                 Console.WriteLine("Press any key......");
                 Console.ReadKey();
@@ -61,12 +68,15 @@ namespace PlayerManager4
         private void ShowMenu()
         {
             string msg = "1 - Insert a new player\n"
-            + "2 - Show a list of all players\n"
-            + "3 - Show a list of all player with greater score than\n"
-            + "0 - Exit";
+                       + "2 - Show a list of all players (by score descending)\n"
+                       + "3 - Show a list of all players with score greater than\n"
+                       + "4 - Show players sorted by name ascending (A-Z)\n"
+                       + "5 - Show players sorted by name descending (Z-A)\n"
+                       + "0 - Exit";
 
             Console.WriteLine(msg);
         }
+
 
         public void AddNewPlayer()
         {
@@ -81,6 +91,17 @@ namespace PlayerManager4
         public void ListPlayers()
         {
             players.Sort();
+            foreach (Player p in players)
+            {
+                Console.WriteLine(p);
+            }
+        }
+
+        public void ListPlayersByName(bool ascending)
+        {
+            players.Sort(new CompareByName(ascending));
+
+            Console.WriteLine($"\nPlayers sorted by name ({(ascending ? "A-Z" : "Z-A")}):");
             foreach (Player p in players)
             {
                 Console.WriteLine(p);
